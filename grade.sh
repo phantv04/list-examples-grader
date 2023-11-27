@@ -14,3 +14,16 @@ echo 'Finished cloning'
 
 # Then, add here code to compile and run, and do any post-processing of the
 # tests
+
+
+if [[ ! -f student-submission/ListExamples.java ]]
+then echo "Wrong File!"
+    exit 1
+fi
+
+cp student-submission/ListExamples.java grading-area/
+cp TestListExamples.java grading-area/
+cd grading-area
+
+javac -cp $CPATH ListExamples.java TestListExamples.java 2> compiler-error.txt
+java -cp $CPATH org.junit.runner.JUnitCore TestListExamples
